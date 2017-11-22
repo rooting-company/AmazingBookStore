@@ -1,0 +1,71 @@
+spring:
+    application:
+        name: the-amazing-book-store
+        
+    # Defining the default profile.
+    profiles:
+        active: dev
+    jackson:
+        serialization:
+            write_dates_as_timestamps: false
+    cache:
+        type: none
+        
+    # Configuring the h2 database.
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:h2:file:~/h2/amazingStoreBook
+        username: sa
+        password: 
+        driver-class-name: org.h2.Driver
+    jpa:
+        database-platform: br.com.rooting.roxana.demo.config.H2DialectCustom
+        database: H2
+        open-in-view: false
+        show-sql: true
+        generate-ddl: true
+        hibernate:
+            ddl-auto: create-drop
+            enable_lazy_load_no_trans: true
+            naming:
+                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        properties:
+            hibernate.id.new_generator_mappings: true
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: true
+            hibernate.cache.region.factory_class: org.hibernate.cache.jcache.JCacheRegionFactory
+            
+    #enabling h2 admin web interface
+    h2:
+        console:
+            enabled: true
+            path: /h2
+
+# Customizing Swagger for Spring (Spring Fox) doc name.        
+springfox:
+    documentation:
+        swagger:
+            v2:
+                path: /docs.json
+                
+# Roxana's core settings
+# These settings are not usually customized by profile, so in this situation they must be in the root application.yml
+# To see the others settings, open the application-dev.yml or application-prod.yml files.
+roxana:
+    business:
+        # Defines the format of the messages that will be returned by the application.
+        # The available values are: FULLY, TRANSLATED and UNCHANGED
+        # Try out every possibility.
+        # See Roxana's README.md to more information.
+        response-estrategy: FULLY
+        
+    message-bundle:
+    
+        # Define a custom path to the i18n file. The default value is "message", as well as, Spring framework.
+        path: locale/messages
+        
+        # Define a custom locale that will be used to find the correct i18n file to translate the messages. 
+        # When not defined, Roxana will look to the locale of the system.
+        locale: en-US
