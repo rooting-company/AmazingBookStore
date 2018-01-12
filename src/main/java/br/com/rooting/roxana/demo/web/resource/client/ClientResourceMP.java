@@ -2,9 +2,9 @@ package br.com.rooting.roxana.demo.web.resource.client;
 
 import static br.com.rooting.roxana.message.MessageSeverity.SUCCESS;
 
-import br.com.rooting.roxana.message.MessageMapperEnum;
+import br.com.rooting.roxana.business.parameter.mapper.ParameterMapper;
 import br.com.rooting.roxana.message.MessageSeverity;
-import br.com.rooting.roxana.parameter.annotation.ParameterMapper;
+import br.com.rooting.roxana.message.mapper.MessageMapperEnum;
 
 enum ClientResourceMP implements MessageMapperEnum {
 	

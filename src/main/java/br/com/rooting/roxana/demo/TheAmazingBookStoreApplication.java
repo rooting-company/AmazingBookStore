@@ -3,7 +3,8 @@ package br.com.rooting.roxana.demo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.rooting.roxana.annotation.EnableRoxana;
+import br.com.rooting.roxana.config.EnableRoxana;
+
 
 @EnableRoxana
 @SpringBootApplication

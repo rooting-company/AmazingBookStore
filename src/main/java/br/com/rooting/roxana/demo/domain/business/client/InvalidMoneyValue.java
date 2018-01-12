@@ -2,8 +2,8 @@ package br.com.rooting.roxana.demo.domain.business.client;
 
 import java.math.BigDecimal;
 
-import br.com.rooting.roxana.annotation.BusinessException;
-import br.com.rooting.roxana.parameter.annotation.CurrencyParameter;
+import br.com.rooting.roxana.business.BusinessException;
+import br.com.rooting.roxana.business.parameter.CurrencyParameter;
 
 @BusinessException
 public class InvalidMoneyValue extends Exception {

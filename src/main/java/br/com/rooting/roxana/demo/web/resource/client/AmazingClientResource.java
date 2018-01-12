@@ -55,7 +55,7 @@ public class AmazingClientResource extends BaseResource {
 		AmazingClient client = new AmazingClient();
 		client = this.getClientBusiness().create(requestClient.mergeClient(client));
 		
-		Message sucess = this.createMessage(CLIENT_CREATED, client.getId());
+		Message sucess = this.buildMessage(CLIENT_CREATED, client.getId());
 		return ResponseBuilder.buildFilledWith(new ClientRespDTO(client), sucess);
 	}
 	
@@ -77,7 +77,7 @@ public class AmazingClientResource extends BaseResource {
 		AmazingClient client = this.getClientBusiness().getClient(id);
 		this.getClientBusiness().alter(requestClient.mergeClient(client));
 		
-		Message sucess = this.createMessage(CLIENT_ALTERED, client.getId());
+		Message sucess = this.buildMessage(CLIENT_ALTERED, client.getId());
 		return ResponseBuilder.buildWith(sucess);
 	}
 	
@@ -116,7 +116,7 @@ public class AmazingClientResource extends BaseResource {
 			throws InvalidMoneyValue {
 
 		CreditTransaction transaction = this.getClientBusiness().buyCredit(id, money);
-		Message message = this.createMessage(CREDITS_ADDED, transaction.getCredit());
+		Message message = this.buildMessage(CREDITS_ADDED, transaction.getCredit());
 		return ResponseBuilder.buildFilledWith(new CreditTransactionRespDTO(transaction), message);
 	}
 	
@@ -128,7 +128,7 @@ public class AmazingClientResource extends BaseResource {
 			throws InvalidCreditTransactionIdentifier {
 
 		CreditTransaction transaction = this.getClientBusiness().cancelCreditTransaction(id, transactionId);
-		Message message = this.createMessage(CREDITS_CANCELLED, transaction.getCredit());
+		Message message = this.buildMessage(CREDITS_CANCELLED, transaction.getCredit());
 		return ResponseBuilder.buildFilledWith(new CreditTransactionRespDTO(transaction), message);
 	}
 	

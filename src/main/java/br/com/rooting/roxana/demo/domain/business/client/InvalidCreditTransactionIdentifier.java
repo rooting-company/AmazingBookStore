@@ -1,7 +1,7 @@
 package br.com.rooting.roxana.demo.domain.business.client;
 
-import br.com.rooting.roxana.annotation.BusinessException;
-import br.com.rooting.roxana.parameter.annotation.Parameter;
+import br.com.rooting.roxana.business.BusinessException;
+import br.com.rooting.roxana.business.parameter.Parameter;
 
 @BusinessException
 public class InvalidCreditTransactionIdentifier extends Exception {
