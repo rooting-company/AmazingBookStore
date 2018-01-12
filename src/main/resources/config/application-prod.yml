@@ -19,4 +19,4 @@ roxana:
         # just because the programer forgot to add a simple key in the i18n files. 
         # In the development enviroment, the programer will notice missing keys more easily if the application rises exceptions.
         # The default value is "true".
-        suppress-fail-to-translate-exception: false
+        suppress-fails-translations: false
