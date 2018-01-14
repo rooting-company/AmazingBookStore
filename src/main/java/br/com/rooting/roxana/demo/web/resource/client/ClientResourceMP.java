@@ -2,23 +2,23 @@ package br.com.rooting.roxana.demo.web.resource.client;
 
 import static br.com.rooting.roxana.message.MessageSeverity.SUCCESS;
 
-import br.com.rooting.roxana.business.parameter.mapper.ParameterMapper;
 import br.com.rooting.roxana.message.MessageSeverity;
 import br.com.rooting.roxana.message.mapper.MessageMapperEnum;
+import br.com.rooting.roxana.message.mapper.parameter.MessageParameter;
 
 enum ClientResourceMP implements MessageMapperEnum {
 	
-	@ParameterMapper("id")
+	@MessageParameter("id")
 	CLIENT_CREATED(SUCCESS),
 	
-	@ParameterMapper("id")
+	@MessageParameter("id")
 	CLIENT_ALTERED(SUCCESS),
 	
-	@ParameterMapper("id")
-	@ParameterMapper("credits")
+	@MessageParameter("id")
+	@MessageParameter("credits")
 	CREDITS_ADDED(SUCCESS),
 	
-	@ParameterMapper("id")
+	@MessageParameter("id")
 	CREDITS_CANCELLED(SUCCESS);
 	
 	private final MessageSeverity severity;
