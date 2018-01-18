@@ -50,18 +50,18 @@ public class AmazingClientResource extends BaseResource {
 	
 	@ResponseStatus(code = CREATED)
 	@RequestMapping(method = POST)
-	public @ResponseBody FilledResponse<ClientRespDTO, Message> create(@RequestBody ClientReqDTO requestClient) {
+	public @ResponseBody FilledResponse<ClientRespDTO> create(@RequestBody ClientReqDTO requestClient) {
 		
 		AmazingClient client = new AmazingClient();
 		client = this.getClientBusiness().create(requestClient.mergeClient(client));
 		
-		Message sucess = this.buildMessage(CLIENT_CREATED, client.getId());
+		Message sucess = this.createMessage(CLIENT_CREATED, client.getId());
 		return ResponseBuilder.buildFilledWith(new ClientRespDTO(client), sucess);
 	}
 	
 	@ResponseStatus(code = OK)
 	@RequestMapping(method = GET, path = "/{id}")
-	public @ResponseBody FilledResponse<ClientRespDTO, Message> get(
+	public @ResponseBody FilledResponse<ClientRespDTO> get(
 			@ApiParam(value = "Client identifier", required = true) @PathVariable("id") Long id) {
 		
 		AmazingClient client = this.getClientBusiness().getClient(id);
@@ -70,20 +70,20 @@ public class AmazingClientResource extends BaseResource {
 	
 	@ResponseStatus(code = ACCEPTED)
 	@RequestMapping(method = PUT, path = "/{id}")
-	public @ResponseBody Response<Message> alter(
+	public @ResponseBody Response alter(
 			@ApiParam(value = "Client identifier", required = true) @PathVariable("id") Long id,
 			@ApiParam(value = "Client informations", required = true) @RequestBody ClientReqDTO requestClient) {
 		
 		AmazingClient client = this.getClientBusiness().getClient(id);
 		this.getClientBusiness().alter(requestClient.mergeClient(client));
 		
-		Message sucess = this.buildMessage(CLIENT_ALTERED, client.getId());
+		Message sucess = this.createMessage(CLIENT_ALTERED, client.getId());
 		return ResponseBuilder.buildWith(sucess);
 	}
 	
 	@ResponseStatus(code = OK)
 	@RequestMapping(method = GET, path = "/{id}/book-collection")
-	public @ResponseBody FilledResponse<List<BookRespDTO>, Message> getBookCollection(
+	public @ResponseBody FilledResponse<List<BookRespDTO>> getBookCollection(
 			@ApiParam(value = "Client identifier", required = true) @PathVariable("id") Long id) {
 		
 		AmazingClient client = this.getClientBusiness().getClient(id);
@@ -97,7 +97,7 @@ public class AmazingClientResource extends BaseResource {
 	
 	@ResponseStatus(code = OK)
 	@RequestMapping(method = GET, path = "/{id}/credits-transactions")
-	public @ResponseBody FilledResponse<List<CreditTransactionRespDTO>, Message> getCreditTransactions(
+	public @ResponseBody FilledResponse<List<CreditTransactionRespDTO>> getCreditTransactions(
 			@ApiParam(value = "Client identifier", required = true) @PathVariable("id") Long id) {
 		
 		List<CreditTransactionRespDTO> transactions = this.getClientBusiness()
@@ -110,25 +110,25 @@ public class AmazingClientResource extends BaseResource {
 	
 	@ResponseStatus(code = CREATED)
 	@RequestMapping(method = POST, path = "/{id}/credits-transactions")
-	public @ResponseBody FilledResponse<CreditTransactionRespDTO, Message> buyCredit(
+	public @ResponseBody FilledResponse<CreditTransactionRespDTO> buyCredit(
 			@ApiParam(value = "Client identifier", required = true) @PathVariable("id") Long id,
 			@ApiParam(value = "Amount of money used to buy credit", required = true) @RequestParam BigDecimal money)
 			throws InvalidMoneyValue {
 
 		CreditTransaction transaction = this.getClientBusiness().buyCredit(id, money);
-		Message message = this.buildMessage(CREDITS_ADDED, transaction.getCredit());
+		Message message = this.createMessage(CREDITS_ADDED, transaction.getCredit());
 		return ResponseBuilder.buildFilledWith(new CreditTransactionRespDTO(transaction), message);
 	}
 	
 	@ResponseStatus(code = OK)
 	@RequestMapping(method = PATCH, path = "/{id}/credits-transactions")
-	public @ResponseBody Response<Message> cancelCreditTransaction(
+	public @ResponseBody Response cancelCreditTransaction(
 			@ApiParam(value = "Client identifier", required = true) @PathVariable("id") Long id,
 			@ApiParam(value = "Credit transaction identifier to be cancelled", required = true) @RequestParam Long transactionId)
 			throws InvalidCreditTransactionIdentifier {
 
 		CreditTransaction transaction = this.getClientBusiness().cancelCreditTransaction(id, transactionId);
-		Message message = this.buildMessage(CREDITS_CANCELLED, transaction.getCredit());
+		Message message = this.createMessage(CREDITS_CANCELLED, transaction.getCredit());
 		return ResponseBuilder.buildFilledWith(new CreditTransactionRespDTO(transaction), message);
 	}
 	

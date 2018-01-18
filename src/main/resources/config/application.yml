@@ -59,7 +59,7 @@ roxana:
         # The available values are: FULLY, TRANSLATED and UNCHANGED
         # Try out every possibility.
         # See Roxana's README.md to more information.
-        response-estrategy: FULLY
+        response-strategy: FULLY
         
     message-bundle:
     
