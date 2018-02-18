@@ -13,7 +13,9 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,12 +89,13 @@ public class AmazingClientResource extends BaseResource {
 			@ApiParam(value = "Client identifier", required = true) @PathVariable("id") Long id) {
 		
 		AmazingClient client = this.getClientBusiness().getClient(id);
-		List<BookRespDTO> books = client.getBooks()
-										.stream()
-										.map(BookRespDTO::new)
+		
+		List<BookRespDTO> booksDTO = Optional.ofNullable(client.getBooks())
+										.orElseGet(ArrayList::new)
+										.stream().map(BookRespDTO::new)
 										.collect(Collectors.toList());
 		
-		return ResponseBuilder.buildFilledWith(books);
+		return ResponseBuilder.buildFilledWith(booksDTO);
 	}
 	
 	@ResponseStatus(code = OK)
