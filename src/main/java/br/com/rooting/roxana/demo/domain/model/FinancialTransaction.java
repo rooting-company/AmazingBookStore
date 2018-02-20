@@ -12,7 +12,7 @@ import javax.validation.constraints.PastOrPresent;
 import org.springframework.lang.Nullable;
 
 @MappedSuperclass
-public abstract class Transaction implements Serializable {
+public abstract class FinancialTransaction implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	

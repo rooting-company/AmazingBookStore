@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class DebitTransaction extends Transaction {
+public class DebitTransaction extends FinancialTransaction {
 
 	private static final long serialVersionUID = 1L;
 	
