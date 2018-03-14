@@ -10,7 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class CreditTransaction extends Transaction {
+public class CreditTransaction extends FinancialTransaction {
 
 	private static final long serialVersionUID = 1L;
 	

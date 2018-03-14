@@ -3,7 +3,7 @@ package br.com.rooting.roxana.demo.web.resource.client;
 import java.time.LocalDateTime;
 
 import br.com.rooting.roxana.demo.domain.model.CreditTransaction;
-import br.com.rooting.roxana.demo.domain.model.Transaction.Status;
+import br.com.rooting.roxana.demo.domain.model.FinancialTransaction.Status;
 import io.swagger.annotations.ApiModelProperty;
 
 class CreditTransactionRespDTO {

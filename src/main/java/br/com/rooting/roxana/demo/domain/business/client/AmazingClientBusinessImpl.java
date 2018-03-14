@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.rooting.roxana.demo.domain.model.AmazingClient;
 import br.com.rooting.roxana.demo.domain.model.CreditTransaction;
-import br.com.rooting.roxana.demo.domain.model.Transaction.Status;
+import br.com.rooting.roxana.demo.domain.model.FinancialTransaction.Status;
 
 @Service
 @Transactional

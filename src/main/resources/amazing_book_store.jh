@@ -1,0 +1,71 @@
+entity AmazingAuthor {
+	id 						Long required
+	name 					String required minlength(3) maxlength(100)
+	birthDate 				LocalDate
+	alive 					Boolean
+	nationality 			String required minlength(3) maxlength(100)
+	about					String minlength(10) maxlength(100)
+}
+
+entity AmazingBookTitle {
+	id 						Long required
+	name 					String required maxlength(255)
+	firstPublicationDate	String required
+	synopsis				String required minlength(10) maxlength (255)
+	price					BigDecimal required min(0)
+}
+
+entity AmazingBook {
+	id 						Long required
+}
+
+entity AmazingClient {
+	id						Long required
+	firstName				String required minlength(3) maxlength(30)
+	lastName				String required minlength(3) maxlength(30)
+	email					String required
+	birthDate				LocalDate
+	credits					Integer min(0)
+}
+
+/* Abstract */
+entity FinancialTransaction {
+	credit					Integer required
+	date					LocalDate required
+	status					Status required
+	cancellingData			LocalDate
+}
+
+entity CreditTransaction {
+	id						Long required
+	credit					Integer required
+	date					LocalDate required
+	status					Status required
+	cancellingData			LocalDate
+	money					BigDecimal required min(0)
+}
+
+entity DebitTransaction {
+	id						Long required
+	credit					Integer required
+	date					LocalDate required
+	status					Status required
+	cancellingData			LocalDate
+}
+
+relationship OneToMany {
+	AmazingAuthor 		{ bookTitles } 		to AmazingBookTitle,
+	AmazingClient 		{ books } 			to AmazingBook,
+	DebitTransaction 	{ purchasedBooks } 	to AmazingBook
+}
+
+relationship ManyToOne {
+	AmazingBookTitle	 { author } 		to AmazingAuthor,
+	AmazingBook			 {title} 			to AmazingBookTitle,
+	AmazingBook			 { owner } 			to AmazingClient,
+	FinancialTransaction { client } 		to AmazingClient
+}
+
+enum Status {
+	ACTIVE, CANCELLED
+}
