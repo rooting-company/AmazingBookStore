@@ -2,18 +2,18 @@ package br.com.rooting.roxana.demo.domain.business.client;
 
 import java.math.BigDecimal;
 
-import br.com.rooting.roxana.business.BusinessException;
-import br.com.rooting.roxana.business.parameter.CurrencyParameter;
+import br.com.rooting.roxana.exception.mapper.BusinessException;
+import br.com.rooting.roxana.parameter.mapper.CurrencyParam;
 
 @BusinessException
 public class InvalidMoneyValue extends Exception {
 	
 	private static final long serialVersionUID = 1L;
 
-	@CurrencyParameter
+	@CurrencyParam
 	private final BigDecimal invalidMoneyValue;
 	
-	@CurrencyParameter
+	@CurrencyParam
 	private final BigDecimal minMoneyValue;
 	
 	InvalidMoneyValue(final BigDecimal invalidMoneyValue, final BigDecimal minMoneyValue) {

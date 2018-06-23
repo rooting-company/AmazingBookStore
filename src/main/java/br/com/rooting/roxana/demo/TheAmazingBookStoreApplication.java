@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.rooting.roxana.config.EnableRoxana;
 
-
 @EnableRoxana
 @SpringBootApplication
 public class TheAmazingBookStoreApplication {

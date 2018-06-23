@@ -64,7 +64,7 @@ roxana:
     message-bundle:
     
         # Define a custom path to the i18n file. The default value is "message", as well as, Spring framework.
-        path: locale/messages
+        base-name: locale/messages
         
         # Define a custom locale that will be used to find the correct i18n file to translate the messages. 
         # When not defined, Roxana will look to the locale of the system.
